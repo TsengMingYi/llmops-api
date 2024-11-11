@@ -1,0 +1,4 @@
+name: gaode_weather
+label: 高德天氣預報查詢
+description: 根據傳遞的城市查詢該城市的天氣預報資訊。
+params: [ ]
