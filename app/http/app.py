@@ -13,6 +13,7 @@ from internal.server.http import Http
 import dotenv
 from config import Config
 from .module import ExtensionModule
+from .module import injector
 from pkg.sqlalchemy import SQLAlchemy
 
 # 將env加載到環境變量中
@@ -20,8 +21,6 @@ dotenv.load_dotenv()
 
 conf = Config()
 
-
-injector = Injector([ExtensionModule])
 
 app = Http(__name__, conf=conf, db=injector.get(SQLAlchemy),migrate=injector.get(Migrate),router=injector.get(Router))
 # CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})

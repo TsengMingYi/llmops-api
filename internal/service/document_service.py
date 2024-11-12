@@ -24,7 +24,7 @@ from internal.exception import ForbiddenException, FailException, NotFoundExcept
 # from internal.lib.helper import datetime_to_timestamp
 from internal.model import Dataset, Document, Segment, UploadFile, ProcessRule
 # from internal.schema.document_schema import GetDocumentsWithPageReq
-# from internal.task.document_task import build_documents, update_document_enabled, delete_document
+from internal.task.document_task import build_documents, update_document_enabled, delete_document
 from pkg.paginator import Paginator
 from pkg.sqlalchemy import SQLAlchemy
 from .base_service import BaseService
@@ -99,7 +99,7 @@ class DocumentService(BaseService):
             documents.append(document)
 
         # 6.调用异步任务，完成后续操作
-        # build_documents.delay([document.id for document in documents])
+        build_documents.delay([document.id for document in documents])
 
         # 7.返回文档列表与处理批次
         return documents, batch
